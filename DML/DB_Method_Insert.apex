@@ -13,13 +13,14 @@ objNewInvoice.APEX_Customer__c=objCust.id;
 objNewInvoice.APEX_Amount_Paid__c=1000;
 InvoiceListToInsert.add();
 
-//create a second invoice
+//create a second invoice but with out one required field (APEX_Customer__c)
 APex_Invoice__c objNewInvoice2=new APex_Invoice__c();
 objNewInvoice2.APEX_Status__c='Pending';
 objNewInvoice2.APEX_amount_paid__c=700;
 InvoiceListToInsert.add(objNewInvoice2);
 
-Database.SaveResult[] srList=Database.insert(InvoiceListToInsert, false);
+Database.SaveResult[] srList=Database.insert(InvoiceListToInsert, false); //If you set to true then if one issue NO 
+//records will update
 for(Database.SaveResult sr:srList)
 {
   if(sr.isSuccess())
