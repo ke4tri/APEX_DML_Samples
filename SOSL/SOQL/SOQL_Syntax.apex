@@ -78,3 +78,14 @@ for(APEX_Invoice__c objInvoice:invoiceList)
 {
   System.debug('Invoice record '+objInvoice); 
 }
+
+//Creating a new invoice for a Customer
+Apex_Invoice__c objInvoice=new Apex_Invoice__c();
+objInvoice.Apex_Customer__c= [select Id from Apex_Customer__c where name='Customer Creation Test' 
+LIMIT 1].Id;
+
+objInvoice.APEX_Status__c='Pending';
+insert objInvoice;
+System.debug('Newly Created Invoice '+objInvoice);
+
+//Fetching Child Records along with parents 
